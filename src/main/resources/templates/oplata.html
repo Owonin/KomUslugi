@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style2.css">
+
+
+    <style>
+
+a {
+      background-color: transparent;
+      cursor: pointer;
+      color: #2b457f;
+      text-decoration: none;
+      font-size: 12pt;
+    }
+
+    a:active,
+    a:hover {
+      outline: 0;
+    }
+
+        .top-menu {
+        display: block;
+        margin: 30px auto;
+        width: 1140px;
+        height: 127px;
+        background: #fff;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 9;
+        padding-left: 402px;
+    }
+
+    .header-logo {
+        position: absolute;
+        left: 29px;
+        top: 27px;
+    }
+
+    .top-menu li {
+        list-style: none;
+        display: block;
+        float: left;
+        font-size: 16px;
+        font-family: Medium;
+        text-align: center;
+        width: 95px;
+        border-bottom: 5px solid #fff;
+        height: 127px;
+        margin-right: 30px;
+        transition: all 0.4s ease;
+        position: relative;
+    }
+
+    .top-menu li.active {
+        border-bottom: 5px solid #ecb236;
+    }
+
+    .top-menu li:hover {
+        border-bottom: 5px solid #2b457f;
+    }
+
+    .top-menu li a {
+        display: block;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+    }
+
+    .top-menu li:last-child {
+        margin-right: 0;
+    }
+
+    .top-menu li img {
+        display: block;
+        margin: 0 auto;
+        margin-top: 35px;
+        margin-bottom: 14px;
+    }
+
+    .top-menu li .top-submenu a {
+        display: block;
+        position: relative;
+        color: #fff;
+        margin-bottom: 12px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .top-menu li .top-submenu a:hover {
+        color: #7e91b9;
+    }
+
+    .top-menu li .top-submenu {
+        background: #435c93;
+        min-width: 390px;
+        position: relative;
+        right: 295px;
+        top: 127px;
+        text-align: right;
+        padding: 20px;
+        display: none;
+    }
+
+    
+    @media only screen and (max-width: 1199px) {
+      .wrap {
+        width: 100%;
+        padding: 0px 5px;
+      }
+
+      .content-area {
+        width: 100%;
+      }
+
+      .top-menu {
+        width: 100%;
+      }
+
+      .top-menu li {
+        margin-right: 3px;
+      }
+
+      .top-submenu {
+        display: none !important;
+      }
+
+      .content-area .block {
+        padding: 20px;
+        width: 600px;
+      }
+
+
+      /* Medium Devices, Desktops */
+
+      @media only screen and (max-width: 991px) {
+        .content-area .block {
+          width: 100%;
+          float: none;
+        }
+
+        .content-area .area-right .block {
+          width: 100%;
+        }
+
+        .content-area .area-left {
+          float: none !important;
+          padding: 0;
+        }
+
+        .content-area .area-right {
+          float: none !important;
+          padding: 0;
+        }
+
+       
+
+        .top-menu {
+          padding-left: 15px;
+          text-align: center;
+          margin-top: 5px;
+        }
+
+        .top-menu li {
+          display: inline-block;
+          float: none;
+        }
+
+      
+      }
+
+
+      /* Small Devices, Tablets */
+
+      @media only screen and (max-width: 766px) {
+        div.ad_split>div {
+          display: block;
+          width: 95%;
+          margin: 15px auto;
+        }
+
+        
+       
+      
+
+        .top-menu li {
+          margin: 0;
+          width: 100%;
+          height: 60px;
+          line-height: 60px;
+        }
+
+        .top-menu li img {
+          float: left;
+          margin-top: 10px;
+        }
+
+        .top-menu {
+          height: auto;
+        }
+
+      
+
+        .service-form {
+          padding: 10px;
+        }
+
+        .service-form .left {
+          width: 100%;
+        }
+
+        .service-form .right {
+          width: 100%;
+        }
+
+        .service-detail .image {
+          height: 200px;
+        }
+
+        .service-detail .name {
+          font-size: 20px;
+          left: 20px;
+        }
+
+      }
+
+
+      /* Extra Small Devices, Phones */
+
+      @media only screen and (max-width: 479px) {
+        .service-detail .image {
+          background-size: contain;
+        }
+      }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <ul class='top-menu'>
+            <li>
+                <a href='/about/'>
+                    <img src='/images/inde4x.png'>
+                    О компании
+                </a>
+            </li>
+    
+            <li>
+                <a href='/pay/'>
+                    <img src='/images/index.png'>
+    
+                    Оплата ЖКУ </a>
+            <li>
+                <a href='/partners/'>
+                    <img src='/images/index3.png'>
+    
+                    Товары и услуги </a>
+    
+            </li>
+            <li>
+                <a href='/partners/'>
+                    <img src='/images/index5.png'>Панель администратора</a>
+    
+            </li>
+        </ul>
+
+
+        <div class="py-5 text-center">
+
+            <h2>Оплата
+            </h2>
+            <p class="lead">Введите реквизиты платежа</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 order-md-2 mb-4">
+                <h4 class="col-md-6 order-md-2">Оплата</h4>
+
+                <div class="py-5">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked
+                            required>
+                        <label class="custom-control-label" for="credit">Кредитная карта</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="debit">Дебетовая карта</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="paypal">Онлайн кошелек</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Имя владельца</label>
+                        <input type="text" class="form-control" id="cc-name"  value="Card Holder" readonly>
+
+                        
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Номер карты</label>
+                        <input type="text" class="form-control" id="cc-number" value="1234-1234-12-12" readonly>
+                
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Сумма</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" value="123" readonly>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h4 class="mb-3">Реквизиты</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">Код услуги</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    
+                            <div class="invalid-feedback">
+                                Введите код услуги.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Код жилого помещения</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Введите код жилого помещения.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username">Показания счетчика</label>
+                        <input type="text" class="form-control" id="username" placeholder="" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Введите показания счетчика.
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email"> Крайний срок оплаты</label>
+                        <input type="date" class="form-control" id="email" min="2000-01-01" max="2040-12-31">
+                        <div class="invalid-feedback">
+                            Введите дату крайнего срока оплаты.
+                        </div>
+                    </div>
+
+                   
+                    <hr class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Вы согласны предоставить персональные данные
+                        </label>
+                        <div class="invalid-feedback">
+                            Вы должны принять перед отправкой.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Отправить форму</button>
+                    </div>
+            </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <!--Футер(Хрень что снизу)-->
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2021–2022 МТУСИ БСТ-1902</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Конфиденциальность</a></li>
+            <li class="list-inline-item"><a href="#">Условия</a></li>
+            <li class="list-inline-item"><a href="#">Поддержка</a></li>
+        </ul>
+    </footer>
+
+    </div>
+
+    <!--Скрипт-->
+
+    <script type="text/javascript">
+  
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style2.css">
+
+
+    
+    <style>
+
+        a {
+            cursor: pointer;
+            color: #2b457f;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+        
+                .blog-header {
+                    line-height: 1;
+                    border-bottom: 1px solid #e5e5e5;
+                }
+        
+                .blog-header-logo {
+                    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+                    font-size: 2.25rem;
+                }
+        
+                .blog-header-logo:hover {
+                    text-decoration: none;
+                }
+        
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+                }
+        
+                .display-4 {
+                    font-size: 2.5rem;
+                }
+        
+                @media (min-width: 768px) {
+                    .display-4 {
+                        font-size: 3rem;
+                    }
+                }
+        
+                .nav-scroller {
+                    position: relative;
+                    z-index: 2;
+                    height: 2.75rem;
+                    overflow-y: hidden;
+                }
+        
+                .nav-scroller .nav {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-wrap: nowrap;
+                    flex-wrap: nowrap;
+                    padding-bottom: 1rem;
+                    margin-top: -1px;
+                    overflow-x: auto;
+                    text-align: center;
+                    white-space: nowrap;
+                    -webkit-overflow-scrolling: touch;
+                }
+        
+                .nav-scroller .nav-link {
+                    padding-top: .75rem;
+                    padding-bottom: .75rem;
+                    font-size: .875rem;
+                }
+        
+                .card-img-right {
+                    height: 100%;
+                    border-radius: 0 3px 3px 0;
+                }
+        
+                .flex-auto {
+                    -ms-flex: 0 0 auto;
+                    -webkit-box-flex: 0;
+                    flex: 0 0 auto;
+                }
+        
+                .h-250 {
+                    height: 250px;
+                }
+        
+                @media (min-width: 768px) {
+                    .h-md-250 {
+                        height: 250px;
+                    }
+                }
+        
+                .border-top {
+                    border-top: 1px solid #e5e5e5;
+                }
+        
+                .border-bottom {
+                    border-bottom: 1px solid #e5e5e5;
+                }
+        
+                .box-shadow {
+                    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+                }
+        
+                /*
+         * Blog name and description
+         */
+                .blog-title {
+                    margin-bottom: 0;
+                    font-size: 2rem;
+                    font-weight: 400;
+                }
+        
+                .blog-description {
+                    font-size: 1.1rem;
+                    color: #999;
+                }
+        
+                @media (min-width: 40em) {
+                    .blog-title {
+                        font-size: 3.5rem;
+                    }
+                }
+        
+                /* Pagination */
+                .blog-pagination {
+                    margin-bottom: 4rem;
+                }
+        
+                .blog-pagination>.btn {
+                    border-radius: 2rem;
+                }
+        
+                /*
+         * Blog posts
+         */
+                .blog-post {
+                    margin-bottom: 4rem;
+                }
+        
+                .blog-post-title {
+                    margin-bottom: .25rem;
+                    font-size: 2.5rem;
+                }
+        
+                .blog-post-meta {
+                    margin-bottom: 1.25rem;
+                    color: #999;
+                }
+        
+                /*
+         * Footer
+         */
+                .blog-footer {
+                    padding: 2.5rem 0;
+                    color: #999;
+                    text-align: center;
+                    background-color: #f9f9f9;
+                    border-top: .05rem solid #e5e5e5;
+                }
+        
+                .blog-footer p:last-child {
+                    margin-bottom: 0;
+                }
+        
+                a {
+                    background-color: transparent;
+                }
+        
+                a:active,
+                a:hover {
+                    outline: 0;
+                }
+        
+                .top-menu {
+                    display: block;
+                    margin: 30px auto;
+                    width: 1140px;
+                    height: 127px;
+                    background: #fff;
+                    box-sizing: border-box;
+                    position: relative;
+                    z-index: 9;
+                    padding-left: 402px;
+                }
+        
+                .header-logo {
+                    position: absolute;
+                    left: 29px;
+                    top: 27px;
+                }
+        
+                .top-menu li {
+                    list-style: none;
+                    display: block;
+                    float: left;
+                    font-size: 16px;
+                    font-family: Medium;
+                    text-align: center;
+                    width: 95px;
+                    border-bottom: 5px solid #fff;
+                    height: 127px;
+                    margin-right: 30px;
+                    transition: all 0.4s ease;
+                    position: relative;
+                }
+        
+                .top-menu li.active {
+                    border-bottom: 5px solid #ecb236;
+                }
+        
+                .top-menu li:hover {
+                    border-bottom: 5px solid #2b457f;
+                }
+        
+                .top-menu li a {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+                    bottom: 0;
+                }
+        
+                .top-menu li:last-child {
+                    margin-right: 0;
+                }
+        
+                .top-menu li img {
+                    display: block;
+                    margin: 0 auto;
+                    margin-top: 35px;
+                    margin-bottom: 14px;
+                }
+        
+                .top-menu li .top-submenu a {
+                    display: block;
+                    position: relative;
+                    color: #fff;
+                    margin-bottom: 12px;
+                    font-size: 14px;
+                    white-space: nowrap;
+                }
+        
+                .top-menu li .top-submenu a:hover {
+                    color: #7e91b9;
+                }
+        
+                .top-menu li .top-submenu {
+                    background: #435c93;
+                    min-width: 390px;
+                    position: relative;
+                    right: 295px;
+                    top: 127px;
+                    text-align: right;
+                    padding: 20px;
+                    display: none;
+                }
+        
+                .mainpage-services {
+                    position: relative;
+                    z-index: 5;
+                }
+        
+                .mainpage-services .slick-slide {
+                    margin: 15px;
+                }
+        
+                .mainpage-services .item {
+                    background: #fff;
+                    padding: 30px;
+                    width: 100%;
+                }
+        
+                .mainpage-services .image {
+                    height: 150px;
+                    position: relative;
+                }
+        
+                .mainpage-services .name {
+                    font-family: Medium;
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 36px;
+                
+                    height: 42px;
+                    line-height: 21px;
+                    overflow: hidden;
+                }
+        
+                .mainpage-services .text {
+                    color: #7e91b9;
+                    text-align: center;
+                    margin-top: 20px;
+                    line-height: 20px;
+                    height: 60px;
+                    overflow: hidden;
+                }
+        
+                .mainpage-services .label {
+                    width: 82px;
+                    height: 72px;
+                    position: absolute;
+                    right: 0px;
+                    bottom: 0px;
+                    background: url(/local/templates/eirc/css/../img/bg-label.png);
+                    color: #fff;
+                    padding-top: 23px;
+                    padding-left: 30px;
+                    font-size: 20px;
+                }
+        
+                .mainpage-services .slick-prev {
+                    width: 22px;
+                    height: 39px;
+                    background: url(/local/templates/eirc/css/../img/chevron-l.png);
+                }
+        
+                .mainpage-services .slick-next {
+                    width: 22px;
+                    height: 39px;
+                    background: url(/local/templates/eirc/css/../img/chevron-r.png);
+                }
+        
+        
+                .content-area {
+            width: 1840px;
+            margin: 0 auto;
+        }
+        
+        .content-area .block {
+            padding: 30px;
+            margin: 30px 0px;
+            background: #fff;
+            position: relative;
+            z-index: 5;
+            width: 710px;
+        }
+        
+        .content-area .area-left {
+            float: left;
+            padding-left: 30px;
+        }
+        
+        .content-area .area-right {
+            float: right;
+            padding-right: 30px;
+        }
+        
+        .content-area .area-right .block {
+            width: 340px;
+            margin-left: 0px;
+        }
+        .area-only {
+            width: 100%!important;
+            padding-right: 30px;
+            padding-left: 30px;
+        }
+        
+        .area-only .block {
+            width: 100%!important;
+        }
+        
+        h1,
+        .block-title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: normal;
+            font-family: Bold;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .mainpage-services-item {
+            display: inline-flex;
+            width: calc( ( 100% - 71px) / 4);
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .mainpage-services-item:nth-child(4n) {
+            margin-right: 0;
+        }
+        
+        .banner-container-main {
+            display: inline-block;
+        }
+        
+        .banner-img-main {
+            max-width: 555px;
+        }
+        
+        
+        
+        .mainpage-services .image {
+            height: 150px;
+            position: relative;
+        }
+        
+        .mainpage-services .name {
+            font-family: Medium;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 16px;
+            height: 42px;
+            line-height: 21px;
+            overflow: hidden;
+          
+        }
+        
+        .mainpage-services .text {
+            color: #7e91b9;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 20px;
+            height: 60px;
+            overflow: hidden;
+            
+        }
+        
+            </style>
+        <style>/* cyrillic-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC3gTD_u50.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC3g3D_u50.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC3gbD_u50.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC3gfD_u50.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_ZpC3gnD_g.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* cyrillic-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 600;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_bZF3gTD_u50.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 600;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_bZF3g3D_u50.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 600;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_bZF3gbD_u50.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 600;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_bZF3gfD_u50.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 600;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_bZF3gnD_g.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* cyrillic-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_dJE3gTD_u50.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_dJE3g3D_u50.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_dJE3gbD_u50.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_dJE3gfD_u50.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_dJE3gnD_g.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* cyrillic-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* greek-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
+          unicode-range: U+1F00-1FFF;
+        }
+        /* greek */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
+          unicode-range: U+0370-03FF;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* cyrillic-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* greek-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');
+          unicode-range: U+1F00-1FFF;
+        }
+        /* greek */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');
+          unicode-range: U+0370-03FF;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 500;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        /* cyrillic-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format('woff2');
+          unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+        /* cyrillic */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) format('woff2');
+          unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* greek-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) format('woff2');
+          unicode-range: U+1F00-1FFF;
+        }
+        /* greek */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) format('woff2');
+          unicode-range: U+0370-03FF;
+        }
+        /* vietnamese */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) format('woff2');
+          unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format('woff2');
+          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
+          src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        </style>
+        
+        </head>
+        
+        <body><span id="warning-container"><i data-reactroot=""></i></span>
+        
+            <!--НАВИГАЦИЯ-->
+         
+            <!--Регистрация-->
+        
+            <div class="container-xl">
+        
+                <header class="blog-header py-7">
+                    <div class="row flex-nowrap justify-content-between align-items-center">
+                        <div class="col-4 pt-1">
+                        </div>
+                        <div class="col-4 text-center">
+                            <h1 class="blog-header-logo text-dark">КомУслуги
+                        </h1></div>
+                        <div class="col-4 d-flex justify-content-end align-items-center">
+                            <a class="text-muted">
+                            </a>
+                            <a class="btn btn-sm btn-outline-secondary" href="#">Вход в аккаунт
+        
+                            </a>
+                        </div>
+                    </div>
+                </header>
+        
+        
+                <!--Менюшка-->
+                <ul class="top-menu">
+                    <li>
+                        <a href="">
+                            <img src="%D0%A2%D0%9E%D0%B2%D0%B0%D1%80%D1%8B%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8_files/inde4x.png">
+                            О компании
+                        </a>
+                    </li>
+        
+                    <li>
+                        <a href="http://127.0.0.1:5500/pay/">
+                            <img src="%D0%A2%D0%9E%D0%B2%D0%B0%D1%80%D1%8B%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8_files/index.png">
+        
+                            Оплата ЖКУ </a>
+                    </li><li>
+                        <a href="http://127.0.0.1:5500/partners/">
+                            <img src="%D0%A2%D0%9E%D0%B2%D0%B0%D1%80%D1%8B%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8_files/index3.png">
+        
+                            Товары и услуги </a>
+        
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/partners/">
+                            <img src="%D0%A2%D0%9E%D0%B2%D0%B0%D1%80%D1%8B%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8_files/index5.png">Панель администратора</a>
+        
+                    </li>
+                </ul>
+        
+        
+                <!--Servisi-->
+                <div class="content-area">
+                    <div class="mainpage-services">
+        
+        
+        
+                        <div class="mainpage-services-item">
+                            <a href="" class="item" id="bx_3218110189_49">
+        
+                                <div class="image" style="background:url(images/person.png) no-repeat center; background-size: contain;">
+        
+                                    <div class="label">10%</div>
+                                </div>
+        
+                                <div class="name">Регистрация жильца</div>
+                                
+                            </a>
+                        </div>
+        
+        
+                        <div class="mainpage-services-item">
+                            <a href="" class="item" id="bx_3218110189_50">
+        
+                                <div class="image" style="background:url(/images/dom.png) no-repeat center; background-size: contain;">
+        
+                                </div>
+        
+                                <div class="name">Регистрация жилого помещения</div>
+                               
+                            </a>
+                        </div>
+        
+        
+                        <div class="mainpage-services-item">
+                            <a href="" class="item" id="bx_3218110189_7872">
+        
+                                <div class="image" style="background:url(/images/else.png) no-repeat center; background-size: contain;">
+        
+                                </div>
+        
+                                <div class="name">Регистрация уоправляющей организации</div>
+                               
+                            </a>
+                        </div>
+        
+        
+                
+        
+        
+                        <div class="mainpage-services-item">
+                            <a href="" class="item" id="bx_3218110189_6765">
+        
+                                <div class="image" style="background:url(/images/usluga.png) no-repeat center; background-size: contain;">
+        
+                                </div>
+        
+                                <div class="name">Добавление и изменение вида услуг</div>
+                          
+                            </a>
+                        </div>
+        
+        
+        
+        
+        
+        
+                        <!--Футер(Хрень что снизу)-->
+        
+                        <footer class="my-5 pt-5 text-muted text-center text-small">
+                            <p class="mb-1">© 2021–2022 МТУСИ БСТ-1902</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="#">Конфиденциальность</a></li>
+                                <li class="list-inline-item"><a href="#">Условия</a></li>
+                                <li class="list-inline-item"><a href="#">Поддержка</a></li>
+                            </ul>
+                        </footer>
+        
+                    </div>
+                </div>
+            </div>
+            <!--Скрипт-->
+        
+        
+            <script src="%D0%A2%D0%9E%D0%B2%D0%B0%D1%80%D1%8B%20%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8_files/bootstrap.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
+        <!-- Code injected by live-server -->
+        <script type="text/javascript">
+            // <![CDATA[  <-- For SVG support
+            if ('WebSocket' in window) {
+                (function () {
+                    function refreshCSS() {
+                        var sheets = [].slice.call(document.getElementsByTagName("link"));
+                        var head = document.getElementsByTagName("head")[0];
+                        for (var i = 0; i < sheets.length; ++i) {
+                            var elem = sheets[i];
+                            var parent = elem.parentElement || head;
+                            parent.removeChild(elem);
+                            var rel = elem.rel;
+                            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                                elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                            }
+                            parent.appendChild(elem);
+                        }
+                    }
+                    var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                    var address = protocol + window.location.host + window.location.pathname + '/ws';
+                    var socket = new WebSocket(address);
+                    socket.onmessage = function (msg) {
+                        if (msg.data == 'reload') window.location.reload();
+                        else if (msg.data == 'refreshcss') refreshCSS();
+                    };
+                    if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                        console.log('Live reload enabled.');
+                        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                    }
+                })();
+            }
+            else {
+                console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+            }
+            // ]]>
+        </script>
+        
+        </div><div id="wot-new-assistant-container"><div data-reactroot=""></div></div>
+        </body>
+</html>
