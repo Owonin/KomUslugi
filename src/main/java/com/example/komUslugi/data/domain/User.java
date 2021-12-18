@@ -19,13 +19,13 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "login", nullable = false)
     private String login;
     @Column(name = "password", nullable = false)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            inverseJoinColumns = @JoinColumn(name = "kod_zhilogo_pomesheniya"))
     private Set<Role> roles;
 
     public User(String login, String password) {
@@ -34,15 +34,14 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id.equals(user.id) &&
-                login.equals(user.login) &&
-                password.equals(user.password);
+        return Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password);
     }
 
     @Override

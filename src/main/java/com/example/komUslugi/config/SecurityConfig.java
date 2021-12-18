@@ -14,20 +14,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userService;
 
 
-    @Override
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+   @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/static/**")
                 .permitAll()
-               // .antMatchers("/registration/**")
+                // .antMatchers("/registration/**")
                 //.hasRole("ADMIN")
-               // .permitAll()
+                // .permitAll()
                 .antMatchers("/**")
                 .permitAll()
                 .and()
@@ -40,7 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
+    @Autowired
+    private UserDetailsService userService;
 
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+    }
 
 }
 

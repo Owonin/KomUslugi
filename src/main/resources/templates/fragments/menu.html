@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<div th:fragment="menu">
+
+    <header class="blog-header py-7">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+            </div>
+            <div class="col-4 text-center">
+                <h1 class="blog-header-logo text-dark">КомУслуги
+                </h1></div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="text-muted">
+                </a>
+                <a class="btn btn-sm btn-outline-secondary" href="/login">Вход в аккаунт
+                </a>
+                <a class="btn btn-sm btn-outline-secondary" href="/logout">Выход из аккаунта
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="center-block">
+        <ul class='top-menu'>
+            <li>
+                <a href='/about'>
+                    <img src='../static/images/inde4x.png'>
+                    О компании
+                </a>
+            </li>
+
+            <li>
+                <a href='/oplata'>
+                    <img src='../static/images/index.png'>
+
+                    Оплата ЖКУ </a>
+            <li>
+                <a href='/services'>
+                    <img src='../static/images/index3.png'>
+
+                    Товары и услуги </a>
+
+            </li>
+            <!--sec:authorize="hasRole('ROLE_ADMIN')"-->
+            <li>
+                <a href='/admin'>
+                    <img src='../static/images/index5.png'>Панель администратора</a>
+
+            </li>
+        </ul>
+    </div>
+</div>
+</html>

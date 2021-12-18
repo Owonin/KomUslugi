@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+
+<body>
+<!--Регистрация-->
+
+<div class="container-xl">
+
+    <!--НАВИГАЦИЯ-->
+    <div th:replace="fragments/menu :: menu"/>
+
+
+    <div class="col-md-5 col-lg-12">
+        <h4 class="mt-5 mb-3">Форма регистрации нового жильца</h4>
+        <form class="row g-3 needs-validation mt-2" action="#" method="post" novalidate>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Имя" required>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+                <div class="invalid-feedback">
+                    Пожалуйста, выберите имя пользователя.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="validationCustom02" name="Sname" placeholder="Фамилия" required>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+                <div class="invalid-feedback">
+                    Пожалуйста, выберите фамилию пользователя.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">Отчество</label>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustom03" name="patron" placeholder="Отчество"
+                           aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                        Пожалуйста, выберите отчество пользователя.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom04" class="form-label">Эл. Почта</label>
+                <input type="email" class="form-control" id="validationCustom04" name="electronnayaPochta" placeholder="email@mail.ru"
+                       required>
+                <div class="invalid-feedback">
+                    Пожалуйста, выберите электронную почту.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom05" class="form-label">Телефон</label>
+                <input type="tel" class="form-control" name="nomerTelefona" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                       placeholder="123-123-1234" id="validationCustom05" required>
+                <div class="invalid-feedback">
+                    Пожалуйста, введите корректный номер телефона (формат 123-123-1212).
+                </div>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom06" class="form-label">Номер лицевого счета</label>
+                <input type="text" class="form-control" name="nomerLitsevogoScheta" id="validationCustom06" required>
+                <div class="invalid-feedback">
+                    Пожалуйста, предоставьте действующий номер лицевого счета.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Выберете дома проживания</label>
+                <select class="form-select"   multiple="multiple" name="zhiloePomeshenieSet" required>
+                    <option th:each="house : ${housesList}"
+                            th:value="${house.getKod_zhilogo_pomesheniya()}"
+                            th:text="${house.getYlitsaZhPom()}"/>
+                </select>
+                <div class="invalid-feedback">
+                    Пожалуйста, выберете дом.
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Вы согласны предоставить персональные данные
+                    </label>
+                    <div class="invalid-feedback">
+                        Вы должны принять перед отправкой.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Отправить форму</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <!--Футер(Хрень что снизу)-->
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2020–2021 Название компании</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Конфиденциальность</a></li>
+            <li class="list-inline-item"><a href="#">Условия</a></li>
+            <li class="list-inline-item"><a href="#">Поддержка</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!--Скрипт-->
+
+<script type="text/javascript">
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

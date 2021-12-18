@@ -23,9 +23,9 @@ public class MyErrorController implements ErrorController {
                 return "error/404";
             }
             else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "error/404"; //todo
+                return "error/500"; //todo
             }
         }
-        return "error/404";
+        return "error/500";
     }
 }

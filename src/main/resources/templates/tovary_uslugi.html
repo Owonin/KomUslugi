@@ -10,462 +10,19 @@
 
 
 
-    <style>
-
-a {
-    cursor: pointer;
-    color: #2b457f;
-    text-decoration: none;
-    font-size: 12pt;
-}
-
-     
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-        }
-
-        .display-4 {
-            font-size: 2.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .display-4 {
-                font-size: 3rem;
-            }
-        }
-
-     
-      
-
-
-
-     
-
-        a:active,
-        a:hover {
-            outline: 0;
-        }
-
-        .top-menu {
-            display: block;
-            margin: 30px auto;
-            width: 1140px;
-            height: 127px;
-            background: #fff;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 9;
-            padding-left: 402px;
-        }
-
-        .header-logo {
-            position: absolute;
-            left: 29px;
-            top: 27px;
-        }
-
-        .top-menu li {
-            list-style: none;
-            display: block;
-            float: left;
-            font-size: 16px;
-            font-family: Medium;
-            text-align: center;
-            width: 95px;
-            border-bottom: 5px solid #fff;
-            height: 127px;
-            margin-right: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .top-menu li.active {
-            border-bottom: 5px solid #ecb236;
-        }
-
-        .top-menu li:hover {
-            border-bottom: 5px solid #2b457f;
-        }
-
-        .top-menu li a {
-            display: block;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            bottom: 0;
-        }
-
-        .top-menu li:last-child {
-            margin-right: 0;
-        }
-
-        .top-menu li img {
-            display: block;
-            margin: 0 auto;
-            margin-top: 35px;
-            margin-bottom: 14px;
-        }
-
-        .top-menu li .top-submenu a {
-            display: block;
-            position: relative;
-            color: #fff;
-            margin-bottom: 12px;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .top-menu li .top-submenu a:hover {
-            color: #7e91b9;
-        }
-
-        .top-menu li .top-submenu {
-            background: #435c93;
-            min-width: 390px;
-            position: relative;
-            right: 295px;
-            top: 127px;
-            text-align: right;
-            padding: 20px;
-            display: none;
-        }
-
-        .mainpage-services {
-            position: relative;
-            z-index: 5;
-        }
-
-        .mainpage-services .slick-slide {
-            margin: 15px;
-        }
-
-        .mainpage-services .item {
-            background: #fff;
-            padding: 30px;
-            width: 100%;
-        }
-
-        .mainpage-services .image {
-            height: 150px;
-            position: relative;
-        }
-
-        .mainpage-services .name {
-            font-family: Medium;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 36px;
-        
-            height: 42px;
-            line-height: 21px;
-            overflow: hidden;
-        }
-
-        .mainpage-services .text {
-            color: #7e91b9;
-            text-align: center;
-            margin-top: 20px;
-            line-height: 20px;
-            height: 60px;
-            overflow: hidden;
-        }
-
-        .mainpage-services .label {
-            width: 82px;
-            height: 72px;
-            position: absolute;
-            right: 0px;
-            bottom: 0px;
-            background: url(/local/templates/eirc/css/../img/bg-label.png);
-            color: #fff;
-            padding-top: 23px;
-            padding-left: 30px;
-            font-size: 20px;
-        }
-
-        .mainpage-services .slick-prev {
-            width: 22px;
-            height: 39px;
-            background: url(/local/templates/eirc/css/../img/chevron-l.png);
-        }
-
-        .mainpage-services .slick-next {
-            width: 22px;
-            height: 39px;
-            background: url(/local/templates/eirc/css/../img/chevron-r.png);
-        }
-
-
-        .content-area {
-    width: 1840px;
-    margin: 0 auto;
-}
-
-.content-area .block {
-    padding: 30px;
-    margin: 30px 0px;
-    background: #fff;
-    position: relative;
-    z-index: 5;
-    width: 710px;
-}
-
-.content-area .area-left {
-    float: left;
-    padding-left: 30px;
-}
-
-.content-area .area-right {
-    float: right;
-    padding-right: 30px;
-}
-
-.content-area .area-right .block {
-    width: 340px;
-    margin-left: 0px;
-}
-.area-only {
-    width: 100%!important;
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
-.area-only .block {
-    width: 100%!important;
-}
-
-h1,
-.block-title {
-    margin: 0;
-    font-size: 20px;
-    font-weight: normal;
-    font-family: Bold;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.mainpage-services-item {
-    display: inline-flex;
-    width: calc( ( 100% - 71px) / 4);
-    margin-right: 20px;
-    margin-bottom: 20px;
-}
-
-.mainpage-services-item:nth-child(4n) {
-    margin-right: 0;
-}
-
-.banner-container-main {
-    display: inline-block;
-}
-
-.banner-img-main {
-    max-width: 555px;
-}
-
-
-
-.mainpage-services .image {
-    height: 150px;
-    position: relative;
-}
-
-.mainpage-services .name {
-    font-family: Medium;
-    text-align: center;
-    margin-top: 30px;
-    font-size: 16px;
-    height: 42px;
-    line-height: 21px;
-    overflow: hidden;
-  
-}
-
-.mainpage-services .text {
-    color: #7e91b9;
-    text-align: center;
-    margin-top: 20px;
-    line-height: 20px;
-    height: 60px;
-    overflow: hidden;
-    
-}
-
-@media only screen and (max-width: 1199px) {
-            .wrap {
-                width: 100%;
-                padding: 0px 5px;
-            }
-
-            .content-area {
-                width: 130%;
-            }
-
-            .top-menu {
-                width: 100%;
-            }
-
-            .top-menu li {
-                margin-right: 3px;
-            }
-
-            .top-submenu {
-                display: none !important;
-            }
-
-            .content-area .block {
-                padding: 20px;
-                width: 600px;
-            }
-
-
-            /* Medium Devices, Desktops */
-
-            @media only screen and (max-width: 991px) {
-                .content-area .block {
-                    width: 100%;
-                    float: none;
-                }
-
-                .content-area .area-right .block {
-                    width: 100%;
-                }
-
-                .content-area .area-left {
-                    float: none !important;
-                    padding: 0;
-                }
-
-                .content-area .area-right {
-                    float: none !important;
-                    padding: 0;
-                }
-
-
-
-                .top-menu {
-                    padding-left: 15px;
-                    text-align: center;
-                    margin-top: 5px;
-                }
-
-                .top-menu li {
-                    display: inline-block;
-                    float: none;
-                }
-
-
-            }
-
-
-            /* Small Devices, Tablets */
-
-            @media only screen and (max-width: 766px) {
-                div.ad_split>div {
-                    display: block;
-                    width: 95%;
-                    margin: 15px auto;
-                }
-
-
-
-
-
-                .top-menu li {
-                    margin: 0;
-                    width: 100%;
-                    height: 60px;
-                    line-height: 60px;
-                }
-
-                .top-menu li img {
-                    float: left;
-                    margin-top: 10px;
-                }
-
-                .top-menu {
-                    height: auto;
-                }
-
-
-
-
-
-
-                /* Extra Small Devices, Phones */
-
-                @media only screen and (max-width: 479px) {
-                    .service-detail .image {
-                        background-size: contain;
-                    }
-                }
-            }
-        }
-    </style>
 
 </head>
 
 <body>
 
-    <!--НАВИГАЦИЯ-->
-    <div th:replace="fragments/navbar :: navbar" />
+
 
     <!--Регистрация-->
 
     <div class="container-xl">
 
-        <header class="blog-header py-7">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                </div>
-                <div class="col-4 text-center">
-                    <h1 class="blog-header-logo text-dark">КомУслуги</a>
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="text-muted">
-                    </a>
-                    <a class="btn btn-sm btn-outline-secondary" href="#">Вход в аккаунт
-
-                    </a>
-                </div>
-            </div>
-        </header>
-
-
         <!--Менюшка-->
-        <ul class='top-menu'>
-            <li>
-                <a href='/about/'>
-                    <img src='/images/inde4x.png'>
-                    О компании
-                </a>
-            </li>
-
-            <li>
-                <a href='/pay/'>
-                    <img src='/images/index.png'>
-
-                    Оплата ЖКУ </a>
-            <li>
-                <a href='/partners/'>
-                    <img src='/images/index3.png'>
-
-                    Товары и услуги </a>
-
-            </li>
-            <li>
-                <a href='/partners/'>
-                    <img src='/images/index5.png'>Панель администратора</a>
-
-            </li>
-        </ul>
-
+        <div th:replace="fragments/menu :: menu"/>
 
         <!--Servisi-->
         <div class="content-area">
@@ -474,10 +31,10 @@ h1,
 
 
                 <div class="mainpage-services-item">
-                    <a href='' class='item' id="bx_3218110189_49">
+                    <a href='/service/1' class='item' id="bx_3218110189_49">
 
                         <div class='image'
-                            style='background:url(images/premium-icon-utility-4757490.png) no-repeat center; background-size: contain;'>
+                            style='background:url(../static/images/premium-icon-utility-4757490.png) no-repeat center; background-size: contain;'>
 
                             <div class='label'>10%</div>
                         </div>
@@ -489,10 +46,10 @@ h1,
 
 
                 <div class="mainpage-services-item">
-                    <a href='' class='item' id="bx_3218110189_50">
+                    <a href='/service/2' class='item' id="bx_3218110189_50">
 
                         <div class='image'
-                            style='background:url(/images/free-icon-house-276143.png) no-repeat center; background-size: contain;'>
+                            style='background:url(../static/images/free-icon-house-276143.png) no-repeat center; background-size: contain;'>
 
                         </div>
 
@@ -503,10 +60,10 @@ h1,
 
 
                 <div class="mainpage-services-item">
-                    <a href='' class='item' id="bx_3218110189_7872">
+                    <a href='/service/3' class='item' id="bx_3218110189_7872">
 
                         <div class='image'
-                            style='background:url(/images/premium-icon-utilities-4439158.png) no-repeat center; background-size: contain;'>
+                            style='background:url(../static/images/premium-icon-utilities-4439158.png) no-repeat center; background-size: contain;'>
 
                         </div>
 
@@ -520,10 +77,10 @@ h1,
 
 
                 <div class="mainpage-services-item">
-                    <a href='' class='item' id="bx_3218110189_6765">
+                    <a href='/service/4' class='item' id="bx_3218110189_6765">
 
                         <div class='image'
-                            style='background:url(/images/premium-icon-home-3539497.png) no-repeat center; background-size: contain;'>
+                            style='background:url(../static/images/premium-icon-home-3539497.png) no-repeat center; background-size: contain;'>
 
                         </div>
 
@@ -536,10 +93,10 @@ h1,
 
 
                 <div class="mainpage-services-item">
-                    <a href='' class='item' id="bx_3218110189_6773">
+                    <a href='/service/5' class='item' id="bx_3218110189_6773">
 
                         <div class='image'
-                            style='background:url(/images/premium-icon-home-3540105.png) no-repeat center; background-size: contain;'>
+                            style='background:url(../static/images/premium-icon-home-3540105.png) no-repeat center; background-size: contain;'>
 
                         </div>
 
