@@ -1,5 +1,6 @@
 package com.example.komUslugi.services;
 
+import com.example.komUslugi.data.dao.RoleDao;
 import com.example.komUslugi.data.dao.UserDao;
 import com.example.komUslugi.data.domain.Role;
 import com.example.komUslugi.data.domain.User;
@@ -11,8 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,23 +22,28 @@ import java.util.Set;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDao userDao;
+    private final RoleDao roleDao;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
+        this.roleDao = roleDao;
     }
 
     @Override
     public void saveUser(User user) {
         Set<Role> roles = new HashSet<>();
 
+        Role role = roleDao.getById(2L);
+        roles.add(role);
         user.setRoles(roles);
-        log.info(user.getPassword());
-     //   user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        log.info(user.getLogin());
-        // userDao.saveAndFlush(user);
+
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
+         userDao.saveAndFlush(user);
 
     }
 

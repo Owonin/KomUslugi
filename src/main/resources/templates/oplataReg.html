@@ -20,58 +20,50 @@
     <div th:replace="fragments/menu :: menu"/>
 
 
+
     <div class="col-md-5 col-lg-12">
-        <h4 class="mt-5 mb-3">Форма регистрации новой управляющей организацией</h4>
+        <h4 class="mt-5 mb-3">Форма регистрации нового счета оплаты</h4>
         <form class="row g-3 needs-validation mt-2" action="#" method="post" novalidate>
-            <div class="col-md-6">
-                <label for="validationCustom01" class="form-label">Название управлящей организации</label>
-                <input type="text" class="form-control" id="validationCustom01" name="nameOrg" placeholder="Название" required>
-                <div class="valid-feedback">
-                    Все хорошо!
-                </div>
-                <div class="invalid-feedback">
-                    Пожалуйста, выберите название организации.
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label for="validationCustom02" class="form-label">Лицевой счет управляющей организации</label>
-                <input type="number" class="form-control" id="validationCustom02" name="litsevoySchet" placeholder="Фамилия" required>
-                <div class="valid-feedback">
-                    Все хорошо!
-                </div>
-                <div class="invalid-feedback">
-                    Пожалуйста, введите лицевой счет организации.
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom03" class="form-label">Город организации</label>
-                <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="validationCustom03" name="gorodOrg" placeholder="Город"
-                           aria-describedby="inputGroupPrepend" required>
+
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Услуга</label>
+                    <select class="form-select" name="usluga" required>
+                        <option th:each="service : ${servicesList}"
+                                th:value="${service.getKod_uslugi()}"
+                                th:text="${service.getVidUslug()}"/>
+                    </select>
                     <div class="invalid-feedback">
-                        Пожалуйста, введите город организации.
+                        Введите услугу.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Код жильца</label>
+                    <input type="number" class="form-control"  name="id" placeholder="">
+                    <div class="invalid-feedback">
+                        Введите код жильца.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Код жилого помещения</label>
+                    <input type="number" class="form-control"  name="idzp" placeholder="">
+                    <div class="invalid-feedback">
+                        Введите код жилого помещения.
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Крайний срок оплаты</label>
+                    <input type="date" class="form-control"  name="SrokOplati" placeholder="">
+                    <div class="invalid-feedback">
+                        Введите код жильца.
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <label for="validationCustom04" class="form-label">Улица организации</label>
-                <input type="text" class="form-control" id="validationCustom04" name="ulitsaOrg" placeholder="Улица"
-                       required>
-                <div class="invalid-feedback">
-                    Пожалуйста, введите улицу организации.
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom05" class="form-label">Номер дома организации</label>
-                <input type="text" class="form-control" name="nomerZdaniyaOrg"
-                       placeholder="Номер" id="validationCustom05" required>
-                <div class="invalid-feedback">
-                    Пожалуйста, введите номер дома организации.
-                </div>
-                <div class="valid-feedback">
-                    Все хорошо!
-                </div>
-            </div>
+
+
+
+
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -124,6 +116,8 @@
                     }, false)
                 })
         })()
+
+
 
 
 </script>

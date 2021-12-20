@@ -19,19 +19,34 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "login", nullable = false)
+    @Column(name = "login")
     private String login;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Kod_zhiltsa")
+    private Zhilets zhilets;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "kod_zhilogo_pomesheniya"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Querys> querysSet;
 
     public User(String login, String password) {
 
         this.login = login;
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     @Override

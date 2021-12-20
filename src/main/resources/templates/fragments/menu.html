@@ -13,10 +13,11 @@
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted">
                 </a>
-                <a class="btn btn-sm btn-outline-secondary" href="/login">Вход в аккаунт
+                <a sec:authorize="!isAuthenticated()" class="btn btn-sm btn-outline-secondary" href="/login">Вход в аккаунт
                 </a>
-                <a class="btn btn-sm btn-outline-secondary" href="/logout">Выход из аккаунта
+                <a sec:authorize="isAuthenticated()" class="btn btn-sm btn-outline-secondary" href="/logout">Выход из аккаунта
                 </a>
+
             </div>
         </div>
     </header>
@@ -31,21 +32,26 @@
                 </a>
             </li>
 
-            <li>
+            <li sec:authorize="hasRole('ROLE_USER')">
                 <a href='/oplata'>
                     <img src='../static/images/index.png'>
 
                     Оплата ЖКУ </a>
-            <li>
+            <li sec:authorize="hasRole('ROLE_USER')">
                 <a href='/services'>
                     <img src='../static/images/index3.png'>
 
                     Товары и услуги </a>
 
             </li>
+            <li sec:authorize="hasRole('ROLE_USER')">
+                <a href='/otchet'>
+                    <img src='../static/images/index5.png'>Отчет о тратах</a>
+
+            </li>
             <!--sec:authorize="hasRole('ROLE_ADMIN')"-->
-            <li>
-                <a href='/admin'>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <a  href='/admin'>
                     <img src='../static/images/index5.png'>Панель администратора</a>
 
             </li>

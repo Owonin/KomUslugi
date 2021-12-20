@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+
+
+    <div th:replace="fragments/menu :: menu"/>
+
+
+    <div class="py-5 text-center">
+
+        <h2>Оплата
+        </h2>
+        <p class="lead">Введите реквизиты платежа</p>
+    </div>
+    <form class="needs-validation" action="#" method="post" novalidate>
+        <div class="row">
+            <div class="col-md-6 order-md-2 mb-4">
+                <h4 class="col-md-6 order-md-2">Оплата</h4>
+
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Имя владельца</label>
+                        <input type="text" class="form-control"  value="Card Holder" readonly>
+
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Номер карты</label>
+                        <input type="text" class="form-control"  value="1234-1234-12-12" readonly>
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Сумма</label>
+                        <input type="number" class="form-control" id="cc-expiration" th:value="${service.getStoimostUslug()}" readonly required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label>CVV</label>
+                        <input type="text" class="form-control" value="123" readonly>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <h4 class="mb-3">Реквизиты</h4>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Услуга</label>
+                        <input type="text" class="form-control" th:value="${service.getVidUslug()}" readonly>
+                        <div class="invalid-feedback">
+                            Введите услугу.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Код жилого помещения</label>
+                        <select class="form-select" name="zhiloe_pomeshenie" required>
+                            <option th:each="house : ${housesList}"
+                                    th:value="${house.getKod_zhilogo_pomesheniya()}"
+                                    th:text="${house.getAdressDomaZhPom()}"/>
+                        </select>
+                        <div class="invalid-feedback">
+                            Введите код жилого помещения.
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        Вы согласны предоставить персональные данные
+                    </label>
+                    <div class="invalid-feedback">
+                        Вы должны принять перед отправкой.
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Отправить форму</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<!--Футер(Хрень что снизу)-->
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2022 МТУСИ БСТ-1902</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Конфиденциальность</a></li>
+        <li class="list-inline-item"><a href="#">Условия</a></li>
+        <li class="list-inline-item"><a href="#">Поддержка</a></li>
+    </ul>
+</footer>
+
+</div>
+
+<!--Скрипт-->
+
+<script type="text/javascript">
+
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

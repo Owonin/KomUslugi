@@ -4,10 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "oplata")
 @Data
 @NoArgsConstructor
 public class Oplata {
@@ -24,18 +24,31 @@ public class Oplata {
     @ManyToOne
     private Zhiloe_pomeshenie zhiloe_pomeshenie;
 
-    @Column(name = "Summa_k_oplate", nullable = false)
+    @Override
+    public String toString() {
+        return "Oplata{" +
+                "id=" + id +
+                ", usluga=" + usluga +
+                ", org=" + org +
+                ", zhilets=" + zhilets +
+                ", zhiloe_pomeshenie=" + zhiloe_pomeshenie +
+                ", summaKOplate=" + summaKOplate +
+                ", Sostoyanie_oplati=" + Sostoyanie_oplati +
+                ", pokazanyaSchetchika=" + pokazanyaSchetchika +
+                ", dataOplati=" + dataOplati +
+                ", krainiySrokOplati=" + krainiySrokOplati +
+                '}';
+    }
+
+    @Column(name = "Summa_oplati")
     private int summaKOplate;
+    @Column(name = "Sostoyanie_oplati")
+    private boolean Sostoyanie_oplati;
     @Column(name = "Pokazanya_schetchika")
     private int pokazanyaSchetchika;
-    @Column(name = "Sostoyanie_oplati", nullable = false)
-    private Boolean Sostoyanie_oplati;
-    @Column(name = "Data_oplati")
-    @Temporal(TemporalType.DATE)
-    private Date dataOplati;
-    @Column(name = "Krainiy_srok_oplati", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date Krainiy_srok_oplati;
-    @Column(name = "Summa_peni", nullable = false)
-    private int Summa_peni;
+    @Column(name = "Data_oplati", columnDefinition = "DATE")
+    private LocalDate dataOplati;
+    @Column(name = "Krainiy_srok_oplati", columnDefinition = "DATE")
+    private LocalDate krainiySrokOplati;
+
 }
